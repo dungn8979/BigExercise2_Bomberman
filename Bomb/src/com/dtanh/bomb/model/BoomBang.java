@@ -6,6 +6,9 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import static com.dtanh.bomb.model.MapItem.SIZE;
 
@@ -19,6 +22,7 @@ public class BoomBang {
     private int lenghDown = lengh;
     private int xBossDie;
     private int yBossDie;
+    private String typeBossDie = "Boss";
     private int imageIndex=0;
 
     public final Image[] BOOM_BANG = {
@@ -36,7 +40,7 @@ public class BoomBang {
 
     public final Image[] BOSS_DIE={
             new ImageIcon(getClass().getResource("/res/drawable/images/image/balloom_dead.png")).getImage(),
-            new ImageIcon(getClass().getResource("/res/drawable/images/image/kondoria_dead.png")).getImage(),
+            new ImageIcon(getClass().getResource("/res/drawable/images/image/oneal_dead.png")).getImage(),
     };
 
     public final Image[] MAP_DESTROY ={
@@ -103,6 +107,7 @@ public class BoomBang {
                 if (rectangle1.isEmpty()== false){
                     xBossDie= arrBoss.get(i).getX();
                     yBossDie=arrBoss.get(i).getY();
+                    typeBossDie = checkTypeBossDie(arrBoss.get(i));
                     arrBoss.remove(i);
                     Clip clip= Sound.getSound(getClass().getResource("/res/drawable//sounds/bang_bang.wav"));
                     clip.start();
@@ -114,6 +119,7 @@ public class BoomBang {
                     if (rectangle0.isEmpty() == false) {
                         xBossDie= arrBoss.get(i).getX();
                         yBossDie=arrBoss.get(i).getY();
+                        typeBossDie = checkTypeBossDie(arrBoss.get(i));
                         arrBoss.remove(i);
                         Clip clip= Sound.getSound(getClass().getResource("/res/drawable/sounds/bang_bang.wav"));
                         clip.start();
@@ -126,6 +132,7 @@ public class BoomBang {
                     if (rectangle.isEmpty() == false) {
                         xBossDie= arrBoss.get(i).getX();
                         yBossDie=arrBoss.get(i).getY();
+                        typeBossDie = checkTypeBossDie(arrBoss.get(i));
                         arrBoss.remove(i);
                         Clip clip= Sound.getSound(getClass().getResource("/res/drawable/sounds/bang_bang.wav"));
                         clip.start();
@@ -138,6 +145,7 @@ public class BoomBang {
                     if (rectangle.isEmpty() == false) {
                         xBossDie= arrBoss.get(i).getX();
                         yBossDie=arrBoss.get(i).getY();
+                        typeBossDie = checkTypeBossDie(arrBoss.get(i));
                         arrBoss.remove(i);
                         Clip clip= Sound.getSound(getClass().getResource("/res/drawable/sounds/bang_bang.wav"));
                         clip.start();
@@ -151,6 +159,7 @@ public class BoomBang {
                     if (rectangle.isEmpty() == false) {
                         xBossDie= arrBoss.get(i).getX();
                         yBossDie=arrBoss.get(i).getY();
+                        typeBossDie = checkTypeBossDie(arrBoss.get(i));
                         arrBoss.remove(i);
                         Clip clip= Sound.getSound(getClass().getResource("/res/drawable/sounds/bang_bang.wav"));
                         clip.start();
@@ -202,15 +211,16 @@ public class BoomBang {
         }
     }
 
-    public void draw(Graphics2D g2d,ArrayList<MapItem> arrMapItem){
+    public void draw(Graphics2D g2d,ArrayList<MapItem> arrMapItem, ArrayList<Boss> arrBoss){
         drawMid(g2d, arrMapItem);
         drawLeft(g2d, arrMapItem);
         drawRight(g2d, arrMapItem);
         drawUp(g2d, arrMapItem);
         drawDown(g2d, arrMapItem);
         if (xBossDie!=0 || yBossDie!=0) {
+//            Image image = BOSS_DIE[imageIndex/50%BOSS_DIE.length];
+            Image image = checkTypeBossDie_ToImage(typeBossDie);
             imageIndex++;
-            Image image= BOSS_DIE[imageIndex/50%BOSS_DIE.length];
             g2d.drawImage(image, xBossDie, yBossDie,SIZE,SIZE, null);
         }
     }
@@ -333,5 +343,14 @@ public class BoomBang {
         }
     }
 
+    private String checkTypeBossDie(Boss boss) {
+        if (boss instanceof Boss_1) return "Boss_1";
+        else return "Boss";
+    }
+
+    private Image checkTypeBossDie_ToImage(String boss) {
+        if (boss.equals("Boss_1")) return BOSS_DIE[1];
+        else return BOSS_DIE[0];
+    }
 }
 

@@ -63,7 +63,8 @@ public class GameManager {
     }
 
     public void initBoss(){
-        for (int i=0;i<5;i++){
+        // init Boss
+        for (int i=0;i<3;i++){
             int orient= random.nextInt(4);
             MapItem point= arrMapItem.get(random.nextInt(255));
             while (point.bit!=0) {
@@ -73,6 +74,18 @@ public class GameManager {
             int yRaw=point.getY();
             Boss boss=new Boss(xRaw,yRaw,orient);
             arrBoss.add(boss);
+        }
+        // init Boss_1
+        for (int i=0;i<3;i++){
+            int orient= random.nextInt(4);
+            MapItem point= arrMapItem.get(random.nextInt(255));
+            while (point.bit!=0) {
+                point= arrMapItem.get(random.nextInt(255));
+            }
+            int xRaw=point.getX();
+            int yRaw=point.getY();
+            Boss_1 boss_1 = new Boss_1(xRaw, yRaw, orient);
+            arrBoss.add(boss_1);
         }
     }
 
@@ -102,7 +115,7 @@ public class GameManager {
                 boom.draw(g2d);
             }
             for (BoomBang boomBang : arrBoomBang) {
-                boomBang.draw(g2d, arrMapItem);
+                boomBang.draw(g2d, arrMapItem, arrBoss);
             }
             for (Item item:arrItem){
                 item.draw(g2d);

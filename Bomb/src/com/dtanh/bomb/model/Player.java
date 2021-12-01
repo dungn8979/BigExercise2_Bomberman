@@ -17,7 +17,7 @@ public class Player {
     private int soBoom=5;
     private int speed=10;
     private int timeMove;
-    private int lenghBoomBang=1;
+    private int lenghBoomBang=10;
     private boolean isPlayerRun= false;
     public static final int LEFT=0;
     public static final int RIGHT=1;
