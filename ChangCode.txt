@@ -5,3 +5,14 @@ typeBossDie
 checkTypeBossDie
 checkTypeBossDie_ToImage
 Image[] BOSS_DIE
+
+>Thêm portal
+-Item:
+ITEM_IMAGE: 3
+Constructor Item : bitItem
+-GameManager:
+initItem
+AI: isGetPortal
+-Player:
+isGetPortal
+moveItem

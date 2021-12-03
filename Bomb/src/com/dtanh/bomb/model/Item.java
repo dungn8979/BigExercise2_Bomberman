@@ -16,14 +16,16 @@ public class Item {
             new ImageIcon(getClass().getResource("/res/drawable/images/image/powerup_bombs.png")).getImage(),
             new ImageIcon(getClass().getResource("/res/drawable/images/image/powerup_flames.png")).getImage(),
             new ImageIcon(getClass().getResource("/res/drawable/images/image/powerup_speed.png")).getImage(),
+            new ImageIcon(getClass().getResource("/res/drawable/images/image/portal.png")).getImage(),
     };
 
-    public Item(int x, int y) {
+    public Item(int x, int y, int bitItem) {
         int rd=random.nextInt(3);
         this.x = x;
         this.y = y;
-        this.bitItem=rd;
-        this.image=ITEM_IMAGE[rd];
+        if (bitItem < 0) this.bitItem=rd;
+        else this.bitItem = bitItem;
+        this.image=ITEM_IMAGE[this.bitItem];
     }
 
     public int getBitItem() {

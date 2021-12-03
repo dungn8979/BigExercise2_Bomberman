@@ -55,7 +55,7 @@ public class GameManager {
         arrBoss= new ArrayList<>();
         arrBoomBang = new ArrayList<>();
         arrItem=new ArrayList<>();
-        player=new Player(W_FARME/2,H_FARME-90-SIZE,Player.DOWN,1);
+        player=new Player(SIZE,SIZE,Player.DOWN,1);
         arrMapItem =new ArrayList<>();
         readMap();
         initBoss();
@@ -90,15 +90,23 @@ public class GameManager {
     }
 
     public void initItem(){
+        ArrayList<MapItem> arrMapItemHaveItem = new ArrayList<>();
         for (int i = 0; i< arrMapItem.size(); i++) {
             int show = random.nextInt(100) + 1;
             if (show > 80 && (arrMapItem.get(i).bit == 2
                     || arrMapItem.get(i).bit == 4 || arrMapItem.get(i).bit == 5)) {
-                int xRaw = arrMapItem.get(i).getX();
-                int yRaw = arrMapItem.get(i).getY();
-                Item item = new Item(xRaw, yRaw);
-                arrItem.add(item);
+                arrMapItemHaveItem.add(arrMapItem.get(i));
             }
+        }
+        int rd_portal = random.nextInt(arrMapItemHaveItem.size());
+        System.out.println("init item in GameManager have: " + arrMapItemHaveItem.size());
+        for (int i = 0; i < arrMapItemHaveItem.size(); i++) {
+            int xRaw = arrMapItemHaveItem.get(i).getX();
+            int yRaw = arrMapItemHaveItem.get(i).getY();
+            Item item = null;
+            if (i == rd_portal) item = new Item(xRaw, yRaw, 3);
+            else item = new Item(xRaw, yRaw, -1);
+            arrItem.add(item);
         }
     }
 
@@ -182,7 +190,8 @@ public class GameManager {
                 return false;
             }
         }
-        if (arrBoss.isEmpty()){
+        if (arrBoss.isEmpty() || player.isGetPortal == true){
+            player.isGetPortal = false;
             setCheckWin(true);
             clip1.stop();
             return false;
@@ -193,7 +202,7 @@ public class GameManager {
     public void readMap(){
         int intLine=0;
         try {
-            String path = getClass().getResource("/res/data/map1.txt").getPath();
+            String path = getClass().getResource("/res/data/map2.txt").getPath();
             File file = new File(path);
             BufferedReader br = new BufferedReader(new FileReader(file));
 

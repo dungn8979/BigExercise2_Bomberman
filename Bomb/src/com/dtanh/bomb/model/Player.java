@@ -1,5 +1,6 @@
 package com.dtanh.bomb.model;
 
+import com.dtanh.bomb.manager.GameManager;
 import res.drawable.sounds.Sound;
 
 import javax.sound.sampled.Clip;
@@ -24,7 +25,7 @@ public class Player {
     public static final int UP=2;
     public static final int DOWN=3;
     private int imageIndex=0;
-
+    public boolean isGetPortal = false;
 
     public final Image[] IMAGES_HIEUUNG={ null, null,null, null,null, null,null, null,null, null
 //            new ImageIcon(getClass().getResource("/res/drawable/images/hieuUng_11.png")).getImage(),
@@ -64,7 +65,7 @@ public class Player {
             new ImageIcon(getClass().getResource("/res/drawable/images/image/player_down.png")).getImage(),
             new ImageIcon(getClass().getResource("/res/drawable/images/image/player_down_1.png")).getImage(),
     };
-    public Player(int x, int y, int orient,int timeMove) {
+    public Player(int x, int y, int orient, int timeMove) {
         this.x = x;
         this.y = y;
         this.timeMove=timeMove;
@@ -255,12 +256,14 @@ public class Player {
                     setSpeed(getSpeed()+1);
                     arrItem.remove(i);
                 }
+                else if (arrItem.get(i).getBitItem()==3){
+                    isGetPortal = true;
+                    arrItem.remove(i);
+                }
                 Clip clip= Sound.getSound(getClass().getResource("/res/drawable/sounds/item.wav"));
                 clip.start();
             }
         }
     }
-
-
 }
 
