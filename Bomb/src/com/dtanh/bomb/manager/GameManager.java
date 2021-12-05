@@ -17,7 +17,7 @@ import static com.dtanh.bomb.view.Gui.W_FARME;
 
 public class GameManager {
     public long time_start = System.currentTimeMillis();
-    private Player player;
+    public Player player;
     private ArrayList<MapItem> arrMapItem;
     private ArrayList<Boom> arrBoom;
     private ArrayList<Boss> arrBoss;
@@ -72,7 +72,7 @@ public class GameManager {
             }
             int xRaw=point.getX();
             int yRaw=point.getY();
-            Boss boss=new Boss(xRaw,yRaw,orient);
+            Boss boss=new Boss(xRaw,yRaw,orient, this);
             arrBoss.add(boss);
         }
         // init Boss_1
@@ -84,7 +84,7 @@ public class GameManager {
             }
             int xRaw=point.getX();
             int yRaw=point.getY();
-            Boss_1 boss_1 = new Boss_1(xRaw, yRaw, orient);
+            Boss_1 boss_1 = new Boss_1(xRaw, yRaw, orient, this);
             arrBoss.add(boss_1);
         }
     }

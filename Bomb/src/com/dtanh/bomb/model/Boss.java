@@ -1,5 +1,9 @@
 package com.dtanh.bomb.model;
 
+import com.dtanh.bomb.manager.GameManager;
+import com.dtanh.bomb.model.ai.AI;
+import com.dtanh.bomb.model.ai.AILow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,6 +21,8 @@ public class Boss {
     public static final int RIGHT = 1;
     public static final int UP = 2;
     public static final int DOWN = 3;
+    protected GameManager gameManager;
+    private AI _ai;
 
     public final Image[] BOSS = {
             new ImageIcon(getClass().getResource("/res/drawable/images/image/balloom_left1.png")).getImage(),
@@ -31,10 +37,12 @@ public class Boss {
 //            new ImageIcon(getClass().getResource("/res/drawable/images/boss_down.png")).getImage(),
 //    };
 
-    public Boss(int x, int y, int orient) {
+    public Boss(int x, int y, int orient, GameManager gameManager) {
         this.x = x;
         this.y = y;
         this.orient = orient;
+        this.gameManager = gameManager;
+        _ai = new AILow();
     }
 
     public int getX() {
@@ -58,12 +66,9 @@ public class Boss {
     }
 
     public void creatOrient() {
-        int percent = random.nextInt(100);
-        if (percent > 95) {
-            int newOrient = random.nextInt(4);
-            changeOrient(newOrient);
-            image = BOSS[newOrient];
-        }
+        int newOrient = _ai.calculateDirection();
+        changeOrient(newOrient);
+        image = BOSS[newOrient];
     }
 
     public void drawBoss(Graphics2D g2d) {

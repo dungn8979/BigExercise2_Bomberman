@@ -16,3 +16,12 @@ AI: isGetPortal
 -Player:
 isGetPortal
 moveItem
+
+>AI cho enemy
+-AI
+-AILow
+-AIMedium
+-Boss:
+createOrient
+-Boss_1:
+createOrient

@@ -27,6 +27,30 @@ public class Player {
     private int imageIndex=0;
     public boolean isGetPortal = false;
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getOrient() {
+        return orient;
+    }
+
+    public void setOrient(int orient) {
+        this.orient = orient;
+    }
+
     public final Image[] IMAGES_HIEUUNG={ null, null,null, null,null, null,null, null,null, null
 //            new ImageIcon(getClass().getResource("/res/drawable/images/hieuUng_11.png")).getImage(),
 //            new ImageIcon(getClass().getResource("/res/drawable/images/hieuUng_12.png")).getImage(),
