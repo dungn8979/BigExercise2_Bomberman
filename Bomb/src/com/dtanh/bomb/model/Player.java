@@ -10,11 +10,8 @@ import java.util.ArrayList;
 
 import static com.dtanh.bomb.model.MapItem.SIZE;
 
-public class Player {
-    private int x;
-    private int y;
+public class Player extends Entity{
     private int orient;
-    public Image image;
     private int soBoom=5;
     private int speed=10;
     private int timeMove;

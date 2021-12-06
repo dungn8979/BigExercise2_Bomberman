@@ -6,7 +6,7 @@ import java.awt.*;
 import com.dtanh.bomb.manager.GameManager;
 import com.dtanh.bomb.model.ai.*;
 
-public class Boss_1 extends Boss{
+public class Oneal extends Boss{
     AI _ai = new AIMedium(gameManager.player, this);
 
     public final Image[] BOSS ={
@@ -16,22 +16,12 @@ public class Boss_1 extends Boss{
             new ImageIcon(getClass().getResource("/res/drawable/images/image/oneal_right3.png")).getImage(),
     };
 
-    public Boss_1(int x, int y, int orient, GameManager gameManager) {
+    public Oneal(int x, int y, int orient, GameManager gameManager) {
         super(x, y, orient, gameManager);
     }
-    //    public final Image[] BOSS ={
-//            new ImageIcon(getClass().getResource("/res/drawable/images/boss_left.png")).getImage(),
-//            new ImageIcon(getClass().getResource("/res/drawable/images/boss_right.png")).getImage(),
-//            new ImageIcon(getClass().getResource("/res/drawable/images/boss_up.png")).getImage(),
-//            new ImageIcon(getClass().getResource("/res/drawable/images/boss_down.png")).getImage(),
-//    };oneal_left1.png
-
 
     @Override
     public void creatOrient() {
-//        int percent = random.nextInt(100);
-//        if (percent > 95) {
-//        }
         int newOrient = _ai.calculateDirection();
         changeOrient(newOrient);
         image = BOSS[newOrient];

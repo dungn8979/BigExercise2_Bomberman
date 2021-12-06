@@ -6,9 +6,6 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 import static com.dtanh.bomb.model.MapItem.SIZE;
 
@@ -22,7 +19,7 @@ public class BoomBang {
     private int lenghDown = lengh;
     private int xBossDie;
     private int yBossDie;
-    private String typeBossDie = "Boss";
+    private String typeBossDie = "Ballom";
     private int imageIndex=0;
 
     public final Image[] BOOM_BANG = {
@@ -40,6 +37,7 @@ public class BoomBang {
 
     public final Image[] BOSS_DIE={
             new ImageIcon(getClass().getResource("/res/drawable/images/image/balloom_dead.png")).getImage(),
+            new ImageIcon(getClass().getResource("/res/drawable/images/image/kondoria_dead.png")).getImage(),
             new ImageIcon(getClass().getResource("/res/drawable/images/image/oneal_dead.png")).getImage(),
     };
 
@@ -344,13 +342,17 @@ public class BoomBang {
     }
 
     private String checkTypeBossDie(Boss boss) {
-        if (boss instanceof Boss_1) return "Boss_1";
-        else return "Boss";
+        if (boss instanceof Balloom) return "Balloom";
+        if (boss instanceof Kondoria) return "Kondoria";
+        if (boss instanceof Oneal) return "Oneal";
+        return "Kondoria";
     }
 
     private Image checkTypeBossDie_ToImage(String boss) {
-        if (boss.equals("Boss_1")) return BOSS_DIE[1];
-        else return BOSS_DIE[0];
+        if (boss.equals("Balloom")) return BOSS_DIE[0];
+        if (boss.equals("Kondoria")) return BOSS_DIE[1];
+        if (boss.equals("Oneal")) return BOSS_DIE[2];
+        return BOSS_DIE[0];
     }
 }
 

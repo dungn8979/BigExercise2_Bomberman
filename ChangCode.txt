@@ -1,10 +1,12 @@
 >Thêm enemy
--Boss_1 extends Boss
+-Ballom, Kondoria, Oneal extends Boss
 -BoomBang: 
 typeBossDie
 checkTypeBossDie
 checkTypeBossDie_ToImage
 Image[] BOSS_DIE
+-GameManager:
+initBoss
 
 >Thêm portal
 -Item:

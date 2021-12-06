@@ -6,9 +6,7 @@ import java.util.Random;
 
 import static com.dtanh.bomb.model.MapItem.SIZE;
 
-public class Item {
-    private int x;
-    private int y;
+public class Item extends Entity {
     private int bitItem;
     private Image image;
     private Random random=new Random();

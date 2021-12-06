@@ -3,9 +3,7 @@ package com.dtanh.bomb.model;
 import javax.swing.*;
 import java.awt.*;
 
-public class MapItem {
-    private int x;
-    private int y;
+public class MapItem extends Entity{
     public int bit;
     public static final int SIZE=45;
     public final Image[] MY_IMAGE={

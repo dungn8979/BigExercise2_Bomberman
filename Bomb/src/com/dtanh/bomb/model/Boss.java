@@ -11,11 +11,8 @@ import java.util.Random;
 
 import static com.dtanh.bomb.model.MapItem.SIZE;
 
-public class Boss {
-    private int x;
-    private int y;
+public class Boss extends Entity {
     private int orient;
-    protected Image image;
     protected Random random = new Random();
     public static final int LEFT = 0;
     public static final int RIGHT = 1;
@@ -71,12 +68,11 @@ public class Boss {
         image = BOSS[newOrient];
     }
 
-    public void drawBoss(Graphics2D g2d) {
+    public void draw(Graphics2D g2d) {
 
         g2d.drawImage(image, x, y, SIZE, SIZE, null);
 
     }
-
 
     public boolean checkMoveBoom(ArrayList<Boom> arrBoom) {
         for (int i = 0; i < arrBoom.size(); i++) {

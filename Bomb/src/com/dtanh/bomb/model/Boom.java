@@ -5,11 +5,8 @@ import java.awt.*;
 
 import static com.dtanh.bomb.model.MapItem.SIZE;
 
-public class Boom {
-    private int x;
-    private int y;
+public class Boom extends Entity{
     public int checkBoom;
-    private Image image;
     private int imageIndex=0;
     private int lenghBoom;
     public final Image[] IMAGE_BOOM={

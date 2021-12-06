@@ -63,8 +63,8 @@ public class GameManager {
     }
 
     public void initBoss(){
-        // init Boss
-        for (int i=0;i<3;i++){
+        // init Balloom
+        for (int i=0;i<2;i++){
             int orient= random.nextInt(4);
             MapItem point= arrMapItem.get(random.nextInt(255));
             while (point.bit!=0) {
@@ -72,11 +72,11 @@ public class GameManager {
             }
             int xRaw=point.getX();
             int yRaw=point.getY();
-            Boss boss=new Boss(xRaw,yRaw,orient, this);
+            Boss boss=new Balloom(xRaw,yRaw,orient, this);
             arrBoss.add(boss);
         }
-        // init Boss_1
-        for (int i=0;i<3;i++){
+        // init Kondoria
+        for (int i=0;i<2;i++){
             int orient= random.nextInt(4);
             MapItem point= arrMapItem.get(random.nextInt(255));
             while (point.bit!=0) {
@@ -84,8 +84,20 @@ public class GameManager {
             }
             int xRaw=point.getX();
             int yRaw=point.getY();
-            Boss_1 boss_1 = new Boss_1(xRaw, yRaw, orient, this);
-            arrBoss.add(boss_1);
+            Boss oneal = new Kondoria(xRaw, yRaw, orient, this);
+            arrBoss.add(oneal);
+        }
+        // init Oneal
+        for (int i=0;i<1;i++){
+            int orient= random.nextInt(4);
+            MapItem point= arrMapItem.get(random.nextInt(255));
+            while (point.bit!=0) {
+                point= arrMapItem.get(random.nextInt(255));
+            }
+            int xRaw=point.getX();
+            int yRaw=point.getY();
+            Boss oneal = new Oneal(xRaw, yRaw, orient, this);
+            arrBoss.add(oneal);
         }
     }
 
@@ -133,7 +145,7 @@ public class GameManager {
             }
 
             for (Boss boss : arrBoss) {
-                boss.drawBoss(g2d);
+                boss.draw(g2d);
             }
             player.draw(g2d);
         }catch (ConcurrentModificationException e){
