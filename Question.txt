@@ -1,0 +1,10 @@
+1. xử lý va chạm
+2. các đặt boom
+3. ai cho enemy
+4. xử lý di chuyển cho player
+5. xử lý di chuyển cho enemy
+6. xử lý win lost
+7. xử lý âm thanh
+8. xử lý animation
+9. sơ đồ kế thừa
+10. xử lý sử dụng item

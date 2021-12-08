@@ -1,0 +1,14 @@
+> abstract class - interface
+- dùng abstract để biểu thị mối quan hệ
+> điều khó nhất khi làm game
+> di chuyển enemy
+> logic game
+Main > Gui > Container 	> PanelGame
+			> PanelMenu
+PanelGame.run	> gameManager.movePlayer(orient)
+		> gameManager.myPlayerBoom
+		> gameManager.AI(t)
+		> gameManager.initGame
+gameManager.movePlayer	> player.changeOrient(newOrient)
+			> player.move(arrMapItem,arrBoom) create future_player
+			> player.moveItem(arrItem) Rectangle.intersection
